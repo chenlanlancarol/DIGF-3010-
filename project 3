@@ -1,0 +1,25 @@
+#include <Adafruit_NeoPixel.h>
+#define LED_Pin 6
+// The digital pin used to receive sensor signal
+int sensorPin = 9;
+int val = 0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(sensorPin, INPUT);
+  pinMode(LED_Pin, OUTPUT);
+}
+
+void loop() {
+    val = analogRead(sensorPin);
+    Serial.println(val);
+    // when the sensor detects a signal above the threshold value, LED flashes
+    if (val<800) {
+      digitalWrite(LED_Pin, HIGH);// turn the LED on (HIGH is the voltage level)
+      delay(1000);
+    }
+    else {
+      digitalWrite(LED_Pin, LOW);// turn the LED off by making the voltage LOW
+      delay(1000);
+    }
+}
